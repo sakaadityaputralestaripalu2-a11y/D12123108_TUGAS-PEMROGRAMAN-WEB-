@@ -1,0 +1,11 @@
+const express = require("express");
+const path = require("path");
+const bookRoutes = require("./routes/bookRoutes");
+const errorHandler = require("./middleware/errorHandler");
+const app = express();
+app.use(express.json());
+app.use("/images", express.static(path.join(__dirname, "images")));
+app.use("/books", bookRoutes);
+app.use(errorHandler);
+const PORT = 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
