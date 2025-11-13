@@ -1,0 +1,12 @@
+const express = require("express");
+const router = express.Router();
+const { getBooks, getBookById, addBook, updateBook, deleteBook } = require("../controllers/bookController");
+const logger = require("../middleware/logger");
+const validateBook = require("../middleware/validateBook");
+router.use(logger);
+router.get("/", getBooks);
+router.get("/:id", getBookById);
+router.post("/", validateBook, addBook);
+router.put("/:id", updateBook);
+router.delete("/:id", deleteBook);
+module.exports = router;
